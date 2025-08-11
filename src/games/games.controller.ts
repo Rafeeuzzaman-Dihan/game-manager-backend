@@ -1,5 +1,6 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Param } from '@nestjs/common';
 import { GamesService } from './games.service';
+import { CreateGameDto } from './dto/create-game.dto';
 
 @Controller('games')
 export class GamesController {
@@ -10,7 +11,7 @@ export class GamesController {
     return this.gamesService.getAllGames();
   }
   @Post()
-  addGame(@Body('title') title: string){
-    return this.gamesService.addGame(title);
+  addGame(@Body() createGameDto: CreateGameDto) {
+    return this.gamesService.addGame(createGameDto.title);
   }
 }
