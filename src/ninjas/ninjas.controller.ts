@@ -5,8 +5,10 @@ import {
   Put,
   Delete,
   Param,
-  Query, Body,
+  Query,
+  Body,
 } from '@nestjs/common';
+import { CreateNinjaDto } from './dto/create-ninja.dto';
 
 @Controller('ninjas')
 export class NinjasController {
@@ -33,8 +35,10 @@ export class NinjasController {
 
   // Post Method
   @Post()
-  createNinja(@Body() createNinjaDto) {
-    return {};
+  createNinja(@Body() createNinjaDto: CreateNinjaDto) {
+    return {
+      name: createNinjaDto.name,
+    };
   }
 
   // Put Method
