@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { CreateNinjaDto } from './dto/create-ninja.dto';
 import { UpdateNinjaDto } from './dto/update-ninja.dto';
+import { NinjasService } from './ninjas.service';
 
 @Controller('ninjas')
 export class NinjasController {
@@ -21,8 +22,9 @@ export class NinjasController {
   // }
 
   @Get()
-  getNinjas(@Query('type') type: string) {
-    return [{ type }];
+  getNinjas(@Query('type') type: 'Stealth' | 'Combat' | 'Assassin') {
+    const service = new NinjasService();
+    return service.getNinjas(type);
   }
 
   // Get Method by ID
