@@ -14,6 +14,8 @@ import { NinjasService } from './ninjas.service';
 
 @Controller('ninjas')
 export class NinjasController {
+  constructor(private readonly ninjasService: NinjasService) {}
+
   // GET Method
 
   // @Get()
@@ -23,8 +25,8 @@ export class NinjasController {
 
   @Get()
   getNinjas(@Query('type') type: 'Stealth' | 'Combat' | 'Assassin') {
-    const service = new NinjasService();
-    return service.getNinjas(type);
+    // const service = new NinjasService();
+    return this.ninjasService.getNinjas(type);
   }
 
   // Get Method by ID
