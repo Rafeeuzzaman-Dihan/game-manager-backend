@@ -1,12 +1,20 @@
-import { Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 
 @Controller('ninjas')
 export class NinjasController {
 
   // GET /ninjas  --> Collection of Ninjas
+  // @Get()
+  // getNinjas() {
+  //   return [];
+  // }
+
+
+  // GET /ninjas/?type=fast --> Fast Ninja
+
   @Get()
-  getNinjas() {
-    return [];
+  getNinjas(@Query ('type') type: string){
+      return [{ type }];
   }
 
   // GET /ninjas/:id  --> Single Ninja
@@ -28,7 +36,7 @@ export class NinjasController {
   // PUT /ninjas/:id  --> Update a Ninja
 
   @Put(':id')
-  updateNinja() {
+  updateNinja(@Param('id') id: string) {
     return {};
   }
 
