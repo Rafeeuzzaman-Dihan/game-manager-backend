@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { CreateNinjaDto } from './dto/create-ninja.dto';
+import { UpdateNinjaDto } from './dto/update-ninja.dto';
 
 @Controller('ninjas')
 export class NinjasController {
@@ -39,16 +40,20 @@ export class NinjasController {
   // PUT /ninjas/:id  --> Update a Ninja
 
   @Put(':id')
-  updateNinja(@Param('id') id: string) {
-    return {};
+  updateNinja(@Param('id') id: string, @Body() updateNinjaDto: UpdateNinjaDto) {
+    return {
+      id,
+      name: updateNinjaDto,
+    };
+};
   }
 
   // DELETE /ninjas/:id  --> Delete a Ninja
 
-  @Delete(':id')
-  removeNinja() {
-    return {};
-  }
+  // @Delete(':id')
+  // removeNinja(@param('id') id: string) {
+  //   return {
+  //     id,
+  //   };
+  // }
 
-
-}
