@@ -6,6 +6,8 @@ import { NinjasService } from './ninjas.service';
 @Controller('ninjas')
 export class NinjasController {
 
+  constructor(private readonly ninjasService: NinjasService) {}
+
   // GET /ninjas --> Collection of Ninjas
   // @Get()
   // getNinjas() {
@@ -17,8 +19,7 @@ export class NinjasController {
 
   @Get()
   getNinjas(@Query ('type') type: 'speed' | 'stealth' | 'strength') {
-    const service = new NinjasService()
-    return service.getNinjas(type);
+    return this.ninjasService.getNinjas(type);
   }
 
   // GET /ninjas/:id  --> Single Ninja
