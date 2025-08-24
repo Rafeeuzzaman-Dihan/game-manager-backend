@@ -26,9 +26,7 @@ export class NinjasController {
 
   @Get(':id')
   getOneNinja(@Param('id') id: string) {
-    return {
-      id
-    };
+    return this.ninjasService.getNinja(+id);
   }
 
   // POST /ninjas --> Create a new Ninja
