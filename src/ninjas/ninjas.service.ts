@@ -1,4 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { CreateNinjaDto } from './dto/create-ninja.dto';
+import { UpdateNinjaDto } from './dto/update-ninja.dto';
+
 
 @Injectable()
 export class NinjasService {
@@ -26,7 +29,7 @@ export class NinjasService {
     return ninja;
   }
 
-  createNinja(createNinjaDto: createNinjaDto) {
+  createNinja(createNinjaDto: CreateNinjaDto) {
     const newNinja = {
       ...createNinjaDto,
       id: Date.now(),
@@ -35,7 +38,7 @@ export class NinjasService {
     return newNinja;
   }
 
-  updateNinja(id: number, updateNinjaDto: updateNinjaDto) {
+  updateNinja(id: number, updateNinjaDto: UpdateNinjaDto) {
     this.ninjas = this.ninjas.map((ninja) => {
       if (ninja.id === id) {
         return { ...ninja, ...updateNinjaDto };
