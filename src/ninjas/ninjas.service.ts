@@ -16,4 +16,36 @@ export class NinjasService {
     return this.ninjas;
 
   }
+
+  getNinja(id: number){
+    const ninja = this.ninjas.find((ninja) => ninja.id  === id);
+
+    if(!ninja){
+      throw new Error('Ninja not found');
+    }
+    return ninja;
+  }
+
+  createNinja(createNinjaDto: createNinjaDto) {
+    const newNinja = {
+      ...createNinjaDto,
+      id: Date.now(),
+    };
+    this.ninjas.push(newNinja);
+    return newNinja;
+  }
+
+  updateNinja(id: number, updateNinjaDto: updateNinjaDto) {
+    this.ninjas = this.ninjas.map((ninja) => {
+      if (ninja.id === id) {
+        return { ...ninja, ...updateNinjaDto };
+      }
+      return ninja;
+    })
+    return this.getNinja(id);
+  }
+
+
+
+
 }
